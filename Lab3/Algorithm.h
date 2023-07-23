@@ -10,3 +10,4 @@ void flashSort(int a[], int n, int& count_compare);
 void heapRebuild(int a[], int pos, int n, int& count_compare);
 void heapConstruct(int a[], int n, int& count_compare);
 void heapSort(int a[], int n, int& count_compare);
+void counting_sort(int input[], int n, int& count_compare);
