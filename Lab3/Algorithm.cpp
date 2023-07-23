@@ -106,52 +106,52 @@ void radixSort(int a[], int n, int &count_compare) {
     }
 }
 
-void bubbleSort(int a[], int n, int& comparisons)
+void bubbleSort(int a[], int n, int& count_compare)
 {
-	comparisons = 0;
+	count_compare = 0;
 	
-	 for (int i = 0; ++comparisons && i < n - 1; i++)
+	 for (int i = 0; ++count_compare && i < n - 1; i++)
 	 {
-        for (int j = 0; ++comparisons && j < n - i - 1; j++)
-		{
-			++comparisons;
+        for (int j = 0; ++count_compare && j < n - i - 1; j++)
+	{
+	    ++count_compare;
             if (a[j] > a[j + 1])
-			{
+	    {
                 swap(a[j], a[j + 1]);
             }
         }
     }
 }
 
-void flashSort(int a[], int n, int& comparisons)
+void flashSort(int a[], int n, int& count_compare)
 {
-	comparisons = 0;
+	count_compare = 0;
 	int minVal = a[0];
 	int max = 0;
 	int m = int(0.45 * n);
 	int* l = new int[m];
 	
-	for (int i = 0; ++comparisons && i < m; i++)
+	for (int i = 0; ++count_compare && i < m; i++)
 		l[i] = 0;
-	for (int i = 1; ++comparisons && i < n; i++)
+	for (int i = 1; ++count_compare && i < n; i++)
 	{
-		++comparisons;
+		++count_compare;
 		if (a[i] < minVal)
 			minVal = a[i];
-		++comparisons;
+		++count_compare;
 		if (a[i] > a[max])
 			max = i;
 	}
-	++comparisons;
+	++count_compare;
 	if (a[max] == minVal)
 		return;
 	double c1 = (double)(m - 1) / (a[max] - minVal);
-	for (int i = 0; ++comparisons && i < n; i++)
+	for (int i = 0; ++count_compare && i < n; i++)
 	{
 		int k = int(c1 * (a[i] - minVal));
 		++l[k];
 	}
-	for (int i = 1; ++comparisons && i < m; i++)
+	for (int i = 1; ++count_compare && i < m; i++)
 		l[i] += l[i - 1];
 	swap(a[max], a[0]);
 	int nmove = 0;
@@ -159,17 +159,17 @@ void flashSort(int a[], int n, int& comparisons)
 	int k = m - 1;
 	int t = 0;
 	int flash;
-	while ( ++comparisons && nmove < n - 1)
+	while ( ++count_compare && nmove < n - 1)
 	{
-		while (++comparisons && j > l[k] - 1)
+		while (++count_compare && j > l[k] - 1)
 		{
 			j++;
 			k = int(c1*(a[j] - minVal));
 		}
 		flash = a[j];
-		++comparisons;// for the command if behind
+		++count_compare;// for the command if behind
 		if (k < 0) break;
-		while ( ++comparisons && j != l[k])
+		while ( ++count_compare && j != l[k])
 		{
 			k = int(c1*(flash - minVal));
 			int hold = a[t = --l[k]];
@@ -181,11 +181,11 @@ void flashSort(int a[], int n, int& comparisons)
 	delete[] l;
 	//insertionSort
 	// sau buoc hoan vi thi khoang cach phai duy chuyen giua cac phan tu khong lon, vi the insertionSort se co uu the
-	for (int i = 1; ++comparisons && i < n; i++)
+	for (int i = 1; ++count_compare && i < n; i++)
 	{
 		int k = i - 1;
 		int key = a[i];
-		while ( ++comparisons && a[k] > key && ++comparisons && k >= 0)
+		while ( ++count_compare && a[k] > key && ++count_compare && k >= 0)
 		{
 			a[k + 1] = a[k];
 			k--;
@@ -195,20 +195,20 @@ void flashSort(int a[], int n, int& comparisons)
 
 }
 
-void heapRebuild(int a[], int pos, int n, int& comparisons)
+void heapRebuild(int a[], int pos, int n, int& count_compare)
 {
 
-	while (++comparisons && (2 * pos + 1 < n))
+	while (++count_compare && (2 * pos + 1 < n))
 	{
 		int j = 2 * pos + 1;
-		++comparisons;
+		++count_compare;
 		if (j < n - 1)
 		{
-			++comparisons;
+			++count_compare;
 			if (a[j] < a[j + 1])
 			j = j + 1;
 		}
-		++comparisons;
+		++count_compare;
 		if (a[pos] >= a[j])
 			return;
 		swap(a[pos], a[j]);
@@ -216,21 +216,57 @@ void heapRebuild(int a[], int pos, int n, int& comparisons)
 	}
 }
 
-void heapConstruct(int a[], int n, int& comparisons)
+void heapConstruct(int a[], int n, int& count_compare)
 {
-	for (int i = (n - 1) / 2; ++comparisons && i >= 0; i--)
-		heapRebuild(a, i, n, comparisons);
+	for (int i = (n - 1) / 2; ++count_compare && i >= 0; i--)
+		heapRebuild(a, i, n, count_compare);
 }
 
-void heapSort(int a[], int n, int& comparisons)
+void heapSort(int a[], int n, int& count_compare)
 {
-	comparisons = 0;
-	heapConstruct(a, n, comparisons);
+	count_compare = 0;
+	heapConstruct(a, n, count_compare);
 	int r = n - 1;
-	while (comparisons && r > 0)
+	while (++count_compare && r > 0)
 	{
 		swap(a[0], a[r]);
-		heapRebuild(a, 0, r, comparisons);
+		heapRebuild(a, 0, r, count_compare);
 		r--;
 	}
+}
+
+void counting_sort(int input[], int n, int& count_compare)
+{
+    count_compare = 0;
+    int output[n];
+    int max = input[0];
+    int min = input[0];
+    int i;
+	
+    for(i = 1; ++count_compare && i < n; i++)
+    {
+        if(++count_compare && input[i] > max)
+            max = input[i];
+        else if(++count_compare && input[i] < min)
+            min = input[i];
+    }
+
+    int k = max - min + 1;
+
+    int count_array[k];
+    for(i = 0; ++count_compare && i < k; i++)
+        count_array[i] = 0;
+
+    for(i = 0; ++count_compare && i < n; i++)
+        count_array[input[i] - min]++;
+    for(i = 1; ++count_compare && i < k; i++)
+        count_array[i] += count_array[i - 1];
+    for(i = 0; ++count_compare && i < n; i++)
+    {
+        output[count_array[input[i] - min] - 1] = input[i];
+        count_array[input[i] - min]--;
+    }
+
+    for(i = 0; ++count_compare && i < n; i++)
+        input[i] = output[i];
 }
