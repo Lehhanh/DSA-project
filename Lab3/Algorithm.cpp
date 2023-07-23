@@ -105,3 +105,132 @@ void radixSort(int a[], int n, int &count_compare) {
         count_radixSort(a, n, d, count_compare);
     }
 }
+
+void bubbleSort(int a[], int n, int& comparisons)
+{
+	comparisons = 0;
+	
+	 for (int i = 0; ++comparisons && i < n - 1; i++)
+	 {
+        for (int j = 0; ++comparisons && j < n - i - 1; j++)
+		{
+			++comparisons;
+            if (a[j] > a[j + 1])
+			{
+                swap(a[j], a[j + 1]);
+            }
+        }
+    }
+}
+
+void flashSort(int a[], int n, int& comparisons)
+{
+	comparisons = 0;
+	int minVal = a[0];
+	int max = 0;
+	int m = int(0.45 * n);
+	int* l = new int[m];
+	
+	for (int i = 0; ++comparisons && i < m; i++)
+		l[i] = 0;
+	for (int i = 1; ++comparisons && i < n; i++)
+	{
+		++comparisons;
+		if (a[i] < minVal)
+			minVal = a[i];
+		++comparisons;
+		if (a[i] > a[max])
+			max = i;
+	}
+	++comparisons;
+	if (a[max] == minVal)
+		return;
+	double c1 = (double)(m - 1) / (a[max] - minVal);
+	for (int i = 0; ++comparisons && i < n; i++)
+	{
+		int k = int(c1 * (a[i] - minVal));
+		++l[k];
+	}
+	for (int i = 1; ++comparisons && i < m; i++)
+		l[i] += l[i - 1];
+	swap(a[max], a[0]);
+	int nmove = 0;
+	int j = 0;
+	int k = m - 1;
+	int t = 0;
+	int flash;
+	while ( ++comparisons && nmove < n - 1)
+	{
+		while (++comparisons && j > l[k] - 1)
+		{
+			j++;
+			k = int(c1*(a[j] - minVal));
+		}
+		flash = a[j];
+		++comparisons;// for the command if behind
+		if (k < 0) break;
+		while ( ++comparisons && j != l[k])
+		{
+			k = int(c1*(flash - minVal));
+			int hold = a[t = --l[k]];
+			a[t] = flash;
+			flash = hold;
+			++nmove;
+		}
+	}
+	delete[] l;
+	//insertionSort
+	// sau buoc hoan vi thi khoang cach phai duy chuyen giua cac phan tu khong lon, vi the insertionSort se co uu the
+	for (int i = 1; ++comparisons && i < n; i++)
+	{
+		int k = i - 1;
+		int key = a[i];
+		while ( ++comparisons && a[k] > key && ++comparisons && k >= 0)
+		{
+			a[k + 1] = a[k];
+			k--;
+		}
+		a[k + 1] = key;
+	}
+
+}
+
+void heapRebuild(int a[], int pos, int n, int& comparisons)
+{
+
+	while (++comparisons && (2 * pos + 1 < n))
+	{
+		int j = 2 * pos + 1;
+		++comparisons;
+		if (j < n - 1)
+		{
+			++comparisons;
+			if (a[j] < a[j + 1])
+			j = j + 1;
+		}
+		++comparisons;
+		if (a[pos] >= a[j])
+			return;
+		swap(a[pos], a[j]);
+		pos = j;
+	}
+}
+
+void heapConstruct(int a[], int n, int& comparisons)
+{
+	for (int i = (n - 1) / 2; ++comparisons && i >= 0; i--)
+		heapRebuild(a, i, n, comparisons);
+}
+
+void heapSort(int a[], int n, int& comparisons)
+{
+	comparisons = 0;
+	heapConstruct(a, n, comparisons);
+	int r = n - 1;
+	while (comparisons && r > 0)
+	{
+		swap(a[0], a[r]);
+		heapRebuild(a, 0, r, comparisons);
+		r--;
+	}
+}
