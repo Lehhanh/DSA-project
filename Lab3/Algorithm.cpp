@@ -318,7 +318,7 @@ void counting_sort(int input[], int n, int& count_compare)
 
     int k = max - min + 1;
 
-    int count_array[k];
+    int* count_array = new int [k];
     for(i = 0; ++count_compare && i < k; i++)
         count_array[i] = 0;
 
@@ -335,4 +335,5 @@ void counting_sort(int input[], int n, int& count_compare)
     for(i = 0; ++count_compare && i < n; i++)
         input[i] = output[i];
     delete[] output;
+    delete [] count_array;
 }
