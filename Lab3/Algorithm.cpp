@@ -132,7 +132,6 @@ void shell_sort(int a[], int n, int &cnt_compare) //codelearn.io
 	int interval, i, j, tmp;
 	for(interval = n / 2; ++cnt_compare && interval > 0; interval /= 2)
 	{
-		cnt = 0;
 		for(i = interval; ++cnt_compare && i < n; i++)
 		{
 			tmp = a[i];
