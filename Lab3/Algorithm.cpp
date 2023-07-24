@@ -9,6 +9,24 @@ void swap(int& a, int& b) {
     b = temp;
 }
 
+void selection_sort(int a[], int n, int &cnt_compare)
+{
+	cnt_compare = 0;
+	int i, j, min_idx;
+	for(int i = 0; ++cnt_compare && i < n - 1; i++)
+	{
+		min_idx = i;
+		for(int j = i + 1; ++cnt_compare && j < n; j++)
+		{
+			if(++cnt_compare && a[j] < a[min_idx])
+			{
+				min_idx = j;
+			}
+		}
+		swap(a[i], a[min_idx]);
+	}
+	cnt_compare++;
+}
 
 void insertionSort(int a[], int n, int &count_compare) {
     count_compare = 0;
@@ -27,7 +45,7 @@ void merge(int a[], int left, int mid, int right, int &count_compare) {
     int* temp_arr = new int[right - left + 1];
     int i1 = left, i2 = mid + 1;
     int i = 0;
-    while (++count_compare && i1 <= mid && count_compare && i2 <= right) {
+    while (++count_compare && i1 <= mid && ++count_compare && i2 <= right) {
         if (++count_compare && a[i1] <= a[i2])
             temp_arr[i++] = a[i1++];
         else
@@ -55,7 +73,35 @@ void mergeSort(int a[], int left, int right, int &count_compare) {
     merge(a, left, mid, right, count_compare);
 }
 
+int partition(int a[], int l, int r, int &cnt_compare)
+{
+	int i = l - 1;
+	int pivot = a[r];
+	for(int j = l; ++cnt_compare && j < r; j++)
+	{
+		//Neu a[j] > pivot => bo qua
+		if(++cnt_compare && a[j] <= pivot)
+		{
+			//Dua a[j] len dau
+			i++;
+			swap(a[i], a[j]);
+		}
+	}
+	i++; //Tang i len 1 don vi de swap pivot ve giua mang
+	swap(a[i], a[r]);
+	return i;
+}
 
+void quick_sort(int a[], int l, int r, int &cnt_compare)
+{
+	cnt_compare = 0;
+	if(l < r)
+	{
+		int pos = partition(a, l, r, cnt_compare);
+		quick_sort(a, l, pos - 1, cnt_compare); //De quy ben trai
+		quick_sort(a, pos + 1, r, cnt_compare); //De quy ben phai
+	}
+}
 
 void shakerSort(int a[], int n, int &count_compare) {
     count_compare = 0;
@@ -78,6 +124,25 @@ void shakerSort(int a[], int n, int &count_compare) {
         }
         left = x;
     }
+}
+
+void shell_sort(int a[], int n, int &cnt_compare) //codelearn.io
+{
+	cnt_compare = 0;
+	int interval, i, j, tmp;
+	for(interval = n / 2; ++cnt_compare && interval > 0; interval /= 2)
+	{
+		cnt = 0;
+		for(i = interval; ++cnt_compare && i < n; i++)
+		{
+			tmp = a[i];
+			for(j = i; ++cnt_compare && j >= interval && ++cnt_compare && a[j - interval] > tmp ; j -= interval)
+			{
+				a[j] = a[j - interval];
+			}
+			a[j] = tmp;
+		}
+	}
 }
 
 void count_radixSort(int a[], int n, int d, int &count_compare) {
