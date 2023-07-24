@@ -303,7 +303,7 @@ void heapSort(int a[], int n, int& count_compare)
 void counting_sort(int input[], int n, int& count_compare)
 {
     count_compare = 0;
-    int output[n];
+    int *output = new int [n];
     int max = input[0];
     int min = input[0];
     int i;
@@ -334,4 +334,5 @@ void counting_sort(int input[], int n, int& count_compare)
 
     for(i = 0; ++count_compare && i < n; i++)
         input[i] = output[i];
+    delete[] output;
 }
