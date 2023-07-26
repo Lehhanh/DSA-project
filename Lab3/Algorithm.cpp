@@ -9,7 +9,7 @@ void swap(int& a, int& b) {
     b = temp;
 }
 
-void selection_sort(int a[], int n, int &cnt_compare)
+void selection_sort(int a[], int n, long long &cnt_compare)
 {
 	cnt_compare = 0;
 	int i, j, min_idx;
@@ -25,10 +25,9 @@ void selection_sort(int a[], int n, int &cnt_compare)
 		}
 		swap(a[i], a[min_idx]);
 	}
-	cnt_compare++;
 }
 
-void insertionSort(int a[], int n, int &count_compare) {
+void insertionSort(int a[], int n, long long &count_compare) {
     count_compare = 0;
     for (int i = 1; ++count_compare && i < n; i++) {
         int x = a[i];
@@ -41,7 +40,7 @@ void insertionSort(int a[], int n, int &count_compare) {
     }
 }
 
-void merge(int a[], int left, int mid, int right, int &count_compare) {
+void merge(int a[], int left, int mid, int right, long long &count_compare) {
     int* temp_arr = new int[right - left + 1];
     int i1 = left, i2 = mid + 1;
     int i = 0;
@@ -64,7 +63,7 @@ void merge(int a[], int left, int mid, int right, int &count_compare) {
     delete[] temp_arr;
 }
 
-void mergeSort(int a[], int left, int right, int &count_compare) {
+void mergeSort(int a[], int left, int right, long long &count_compare) {
     if (++count_compare && left >= right)
         return;
     int mid = (left + right) / 2;
@@ -73,7 +72,7 @@ void mergeSort(int a[], int left, int right, int &count_compare) {
     merge(a, left, mid, right, count_compare);
 }
 
-int partition(int a[], int l, int r, int &cnt_compare)
+int partition(int a[], int l, int r, long long &cnt_compare)
 {
 	int i = l - 1;
 	int pivot = a[r];
@@ -92,9 +91,8 @@ int partition(int a[], int l, int r, int &cnt_compare)
 	return i;
 }
 
-void quick_sort(int a[], int l, int r, int &cnt_compare)
+void quick_sort(int a[], int l, int r, long long &cnt_compare)
 {
-	cnt_compare = 0;
 	if(l < r)
 	{
 		int pos = partition(a, l, r, cnt_compare);
@@ -103,7 +101,7 @@ void quick_sort(int a[], int l, int r, int &cnt_compare)
 	}
 }
 
-void shakerSort(int a[], int n, int &count_compare) {
+void shakerSort(int a[], int n, long long &count_compare) {
     count_compare = 0;
     int left = 0;
     int right = n - 1;
@@ -126,7 +124,7 @@ void shakerSort(int a[], int n, int &count_compare) {
     }
 }
 
-void shell_sort(int a[], int n, int &cnt_compare) //codelearn.io
+void shell_sort(int a[], int n, long long &cnt_compare) //codelearn.io
 {
 	cnt_compare = 0;
 	int interval, i, j, tmp;
@@ -144,7 +142,7 @@ void shell_sort(int a[], int n, int &cnt_compare) //codelearn.io
 	}
 }
 
-void count_radixSort(int a[], int n, int d, int &count_compare) {
+void count_radixSort(int a[], int n, int d, long long &count_compare) {
     int* output = new int[n] {0};
     int count[10] = { 0 };
     for (int i = 0; ++count_compare && i < n; i++) {
@@ -163,7 +161,7 @@ void count_radixSort(int a[], int n, int d, int &count_compare) {
     delete[] output;
 }
 
-void radixSort(int a[], int n, int &count_compare) {
+void radixSort(int a[], int n, long long &count_compare) {
     count_compare = 0;
     int max = a[0];
     for (int i = 1; ++count_compare && i < n; i++) {
@@ -175,7 +173,7 @@ void radixSort(int a[], int n, int &count_compare) {
     }
 }
 
-void bubbleSort(int a[], int n, int& count_compare)
+void bubbleSort(int a[], int n, long long& count_compare)
 {
 	count_compare = 0;
 	
@@ -192,7 +190,7 @@ void bubbleSort(int a[], int n, int& count_compare)
     }
 }
 
-void flashSort(int a[], int n, int& count_compare)
+void flashSort(int a[], int n, long long& count_compare)
 {
 	count_compare = 0;
 	int minVal = a[0];
@@ -264,7 +262,7 @@ void flashSort(int a[], int n, int& count_compare)
 
 }
 
-void heapRebuild(int a[], int pos, int n, int& count_compare)
+void heapRebuild(int a[], int pos, int n, long long& count_compare)
 {
 
 	while (++count_compare && (2 * pos + 1 < n))
@@ -285,13 +283,13 @@ void heapRebuild(int a[], int pos, int n, int& count_compare)
 	}
 }
 
-void heapConstruct(int a[], int n, int& count_compare)
+void heapConstruct(int a[], int n, long long& count_compare)
 {
 	for (int i = (n - 1) / 2; ++count_compare && i >= 0; i--)
 		heapRebuild(a, i, n, count_compare);
 }
 
-void heapSort(int a[], int n, int& count_compare)
+void heapSort(int a[], int n, long long& count_compare)
 {
 	count_compare = 0;
 	heapConstruct(a, n, count_compare);
@@ -304,7 +302,7 @@ void heapSort(int a[], int n, int& count_compare)
 	}
 }
 
-void counting_sort(int input[], int n, int& count_compare)
+void counting_sort(int input[], int n, long long& count_compare)
 {
     count_compare = 0;
     int *output = new int [n];
