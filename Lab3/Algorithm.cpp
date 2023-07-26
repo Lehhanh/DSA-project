@@ -165,7 +165,12 @@ void count_radixSort(int a[], int n, int d, int &count_compare) {
 
 void radixSort(int a[], int n, int &count_compare) {
     count_compare = 0;
-    for (int d = 1; ++count_compare && n / d > 0; d *= 10) {
+    int max = a[0];
+    for (int i = 1; ++count_compare && i < n; i++) {
+        if (a[i] > max)
+		max = a[i];
+    }
+    for (int d = 1; ++count_compare && max / d > 0; d *= 10) {
         count_radixSort(a, n, d, count_compare);
     }
 }
