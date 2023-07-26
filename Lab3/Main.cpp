@@ -1,5 +1,6 @@
 #include "Algorithm.h"
 #include "DataGenerator.h"
+#include "Command.h"
 using namespace std;
 void printArray(int a[], int n) {
 	for (int i = 0; i < n; i++) {
@@ -8,25 +9,33 @@ void printArray(int a[], int n) {
 	cout << endl;
 }
 
-int main() {
-	int a[200000];
-	int n = 200000;
-	int choice;
-	cin >> choice;
-	GenerateData(a, n, choice);
-	//printArray(a, n);
-	int count_compare = 0;
-	clock_t start, end;
-	start = clock();
-	shakerSort(a, n, count_compare);
-	//mergeSort(a, 0, n - 1, count_compare);
-	end = clock();
-	double time_use = (double)((end - start) * 1000) / CLOCKS_PER_SEC;//tinh theo milisec
-	//printArray(a, n);
-	cout << "---------------------------" << endl;
-	cout << "Running time:" << time_use << endl;
-	cout << "Comparison:" << count_compare << endl;
-	cout << "---------------------------" << endl;
-
+int main(int argc, char* argv[]) {
+	string mode = argv[1];
+	if (mode == "-a") {
+		if (argc == 5) {
+			//command 1 or 3
+		}
+		else if (argc == 6) {
+			//command 2
+			Command_2(argc, argv);
+		}
+		else {
+			cout << "invalid command line argument" << endl;
+		}
+	}
+	else if (mode == "-c") {
+		if (argc == 5) {
+			//command 4
+		}
+		else if (argc == 6) {
+			//command 5
+		}
+		else {
+			cout << "invalid command line argument" << endl;
+		}
+	}
+	else {
+		cout << "invalid command line argument" << endl;
+	}
 	return 0;
 }
