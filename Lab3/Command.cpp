@@ -205,6 +205,188 @@ void Command_2(int argc, char* argv[]) {
 		break;
 	}
 }
+void Command_3(int argc, char* argv[]) {
+	
+	double running_time = 0;
+	long long count_compare = 0;
+	int check_1 = check_outputParameter(argv[4]);
+	
+	if (check_1 == -1) {
+		cout << "Invalid output parameter" << endl;
+		return;
+	}
+	int n = atoi(argv[3]); // input size
+	if (n < 0) {
+		cout << "Invalid input size" << endl;
+		return;
+	}
+	int* a = new int[n];
+	GenerateRandomData(a, n);
+	
+	ofstream f1;
+	f1.open("input.txt", ios_base::out);
+	f1 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f1 << a[i] << " ";
+	}
+	f1.close();
+	
+	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
+		cout << "Invalid algorithm" << endl;
+		return;
+	}
+	ofstream f2;
+	f2.open("output.txt", ios_base::out);
+	f2 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f2 << a[i] << " ";
+	}
+	f2.close();
+	
+	cout << "ALGORITHM MODE" << endl;
+	cout << "Algorithm:" << argv[2] << endl;
+	cout << "Input size:" << n << endl;
+	cout << "Input order: " << "Randomized";
+	cout << "------------------------------" << endl;
+	switch (check_1) {
+	case 0:
+		cout << "Running time:" << running_time << endl;
+		break;
+	case 1:
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	case 2:
+		cout << "Running time:" << running_time << endl;
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	}
+	cout << "------------------------------" << endl;
+	
+	running_time = 0;
+	count_compare = 0;
+	GenerateNearlySortedData(a, n);
+	
+	ofstream f1;
+	f1.open("input.txt", ios_base::out);
+	f1 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f1 << a[i] << " ";
+	}
+	f1.close();
+	
+	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
+		cout << "Invalid algorithm" << endl;
+		return;
+	}
+	
+	ofstream f2;
+	f2.open("output.txt", ios_base::out);
+	f2 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f2 << a[i] << " ";
+	}
+	f2.close();
+
+	cout << "Input order: " << "Nearly Sorted";
+	cout << "------------------------------" << endl;
+	switch (check_1) {
+	case 0:
+		cout << "Running time:" << running_time << endl;
+		break;
+	case 1:
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	case 2:
+		cout << "Running time:" << running_time << endl;
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	}
+	cout << "------------------------------" << endl;
+	
+	running_time = 0;
+	count_compare = 0;
+	GenerateSortedData(a, n);
+	
+	ofstream f1;
+	f1.open("input.txt", ios_base::out);
+	f1 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f1 << a[i] << " ";
+	}
+	f1.close();
+	
+	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
+		cout << "Invalid algorithm" << endl;
+		return;
+	}
+	
+	ofstream f2;
+	f2.open("output.txt", ios_base::out);
+	f2 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f2 << a[i] << " ";
+	}
+	f2.close();
+
+	cout << "Input order: " << "Sorted";
+	cout << "------------------------------" << endl;
+	switch (check_1) {
+	case 0:
+		cout << "Running time:" << running_time << endl;
+		break;
+	case 1:
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	case 2:
+		cout << "Running time:" << running_time << endl;
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	}
+	cout << "------------------------------" << endl;
+
+		running_time = 0;
+	count_compare = 0;
+	GenerateReverseData(a, n);
+	
+	ofstream f1;
+	f1.open("input.txt", ios_base::out);
+	f1 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f1 << a[i] << " ";
+	}
+	f1.close();
+	
+	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
+		cout << "Invalid algorithm" << endl;
+		return;
+	}
+	
+	ofstream f2;
+	f2.open("output.txt", ios_base::out);
+	f2 << n << endl;
+	for (int i = 0; i < n; i++) {
+		f2 << a[i] << " ";
+	}
+	f2.close();
+
+	cout << "Input order: " << "Reversed";
+	cout << "------------------------------" << endl;
+	switch (check_1) {
+	case 0:
+		cout << "Running time:" << running_time << endl;
+		break;
+	case 1:
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	case 2:
+		cout << "Running time:" << running_time << endl;
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	}
+	cout << "------------------------------" << endl;
+	
+	delete [] a;
+}
 
 void Command_4(int argc, char* argv[]) {
 	string algorithm_1 = argv[2];
