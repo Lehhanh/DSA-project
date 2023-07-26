@@ -7,3 +7,4 @@
 #include "DataGenerator.h"
 
 void Command_2(int argc, char* argv[]);
+void Command_5(int argc, char* argv[]);
