@@ -224,15 +224,11 @@ void Command_4(int argc, char* argv[]) {
 	double running_time_2 = 0;
 	long long count_compare_1 = 0;
 	long long count_compare_2 = 0;
-	if (!check_algorithm(algorithm_1, a, n, count_compare_1, running_time_1)) {
+	if (!check_algorithm(algorithm_1, a, n, count_compare_1, running_time_1) || !check_algorithm(algorithm_2, a, n, count_compare_2, running_time_2)) {
 		cout << "Invalid algorithm specified!" << endl;
 		return;
 	}
-	if (!check_algorithm(algorithm_2, a, n, count_compare_2, running_time_2)) {
-		cout << "Invalid algorithm specified!" << endl;
-		return;
-	}
-	cout << "ALGORITHM MODE" << endl;
+	cout << "COMPARE MODE" << endl;
 	cout << "Algorithm:" << algorithm_1 << " | " << algorithm_2 << endl;
 	cout << "Input file:" << inputFilename << endl;
 	cout << "Input size:" << n << endl;
@@ -278,7 +274,7 @@ void Command_5(int argc, char* argv[]) {
 		cout << "Invalid algorithm" << endl;
 		return;
 	}
-	cout << "ALGORITHM MODE" << endl;
+	cout << "COMPARE MODE" << endl;
 	cout << "Algorithm:" << argv[2] << " | " << argv[3] << endl;
 	cout << "Input size:" << n << endl;
 	cout << "Input order:";
