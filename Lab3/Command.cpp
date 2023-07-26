@@ -90,6 +90,49 @@ int check_outputParameter(char s[]) {
 	return -1;
 }
 
+void Command_1(int argc, char* argv[]) {
+	string algorithm = argv[2];
+	string inputFilename = argv[3];
+	string outputParam = argv[4];
+	int check_1 = check_outputParameter(outputParam);
+	if (check_1 == -1) {
+		cout << "Invalid output parameter specified!" << endl;
+		return;
+	}
+	int n;
+	ifstream inputFile(inputFilename);
+	inputFile >> n;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++){
+		inputFile >> a[i];
+	}
+	inputFile.close();
+	double running_time = 0;
+	long long count_compare = 0;
+	if (!check_algorithm(algorithm, a, n, count_compare, running_time)) {
+		cout << "Invalid algorithm specified!" << endl;
+		return;
+	}
+	cout << "ALGORITHM MODE" << endl;
+	cout << "Algorithm:" << algorithm << endl;
+	cout << "Input file:" << inputFilename << endl;
+	cout << "Input size:" << n << endl;
+	cout << "------------------------------" << endl;
+	switch (check_1) {
+	case 0:
+		cout << "Running time:" << running_time << endl;
+		break;
+	case 1:
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	case 2:
+		cout << "Running time:" << running_time << endl;
+		cout << "Comparisons:" << count_compare << endl;
+		break;
+	}
+	delete[] a;
+}
+
 void Command_2(int argc, char* argv[]) {
 	int check_1 = check_outputParameter(argv[5]);
 	if (check_1 == -1) {
@@ -161,6 +204,43 @@ void Command_2(int argc, char* argv[]) {
 		cout << "Comparisons:" << count_compare << endl;
 		break;
 	}
+}
+
+void Command_4(int argc, char* argv[]) {
+	string algorithm_1 = argv[2];
+	string algorithm_2 = argv[3];
+	string inputFilename = argv[4];
+	int n;
+	ifstream inputFile(inputFilename);
+	inputFile >> n;
+	int* a = new int[n];
+	int* b = new int[n];
+	for (int i = 0; i < n; i++){
+		inputFile >> a[i];
+		inputFile >> b[i];
+	}
+	inputFile.close();
+	double running_time_1 = 0;
+	double running_time_2 = 0;
+	long long count_compare_1 = 0;
+	long long count_compare_2 = 0;
+	if (!check_algorithm(algorithm_1, a, n, count_compare_1, running_time_1)) {
+		cout << "Invalid algorithm specified!" << endl;
+		return;
+	}
+	if (!check_algorithm(algorithm_2, a, n, count_compare_2, running_time_2)) {
+		cout << "Invalid algorithm specified!" << endl;
+		return;
+	}
+	cout << "ALGORITHM MODE" << endl;
+	cout << "Algorithm:" << algorithm_1 << " | " << algorithm_2 << endl;
+	cout << "Input file:" << inputFilename << endl;
+	cout << "Input size:" << n << endl;
+	cout << "------------------------------" << endl;
+	cout << "Running time:" << running_time_1 << " | " << running_time_2 << endl;
+	cout << "Comparisons:" << count_compare_1 << " | " << count_compare_2 << endl;
+	delete[] b;
+	delete[] a;
 }
 
 void Command_5(int argc, char* argv[]) {
