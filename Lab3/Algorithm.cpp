@@ -72,7 +72,7 @@ void mergeSort(int a[], int left, int right, long long &count_compare) {
     merge(a, left, mid, right, count_compare);
 }
 
-void quickSort(int a[], int l, int r, long long& cnt_compare){
+void quick_sort(int a[], int l, int r, long long& cnt_compare){
 	int p = a[(l + r) / 2];
 	int i = l, j = r;
 	while (++cnt_compare && i < j){
@@ -91,10 +91,10 @@ void quickSort(int a[], int l, int r, long long& cnt_compare){
 		}
 	}
 	if (++cnt_compare && i < r){
-		quickSort(a, i, r, cnt_compare);
+		quick_sort(a, i, r, cnt_compare);
 	}
 	if (++cnt_compare && l < j){
-		quickSort(a, l, j, cnt_compare);
+		quick_sort(a, l, j, cnt_compare);
 	}
 } 
 
