@@ -3,7 +3,6 @@ void selection_sort(int a[], int n, long long& cnt_compare);
 void insertionSort(int a[], int n, long long& count_compare);
 void merge(int a[], int left, int mid, int right, long long& count_compare);
 void mergeSort(int a[], int left, int right, long long& count_compare);
-int partition(int a[], int l, int r, long long& cnt_compare);
 void quick_sort(int a[], int l, int r, long long& cnt_compare);
 void shakerSort(int a[], int n, long long& count_compare);
 void shell_sort(int a[], int n, long long& cnt_compare);
