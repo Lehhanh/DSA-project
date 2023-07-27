@@ -72,34 +72,31 @@ void mergeSort(int a[], int left, int right, long long &count_compare) {
     merge(a, left, mid, right, count_compare);
 }
 
-int partition(int a[], int l, int r, long long &cnt_compare)
-{
-	int i = l - 1;
-	int pivot = a[r];
-	for(int j = l; ++cnt_compare && j < r; j++)
-	{
-		//Neu a[j] > pivot => bo qua
-		if(++cnt_compare && a[j] <= pivot)
-		{
-			//Dua a[j] len dau
+void quickSort(int a[], int l, int r, long long& cnt_compare){
+	int p = a[(l + r) / 2];
+	int i = l, j = r;
+	while (++cnt_compare && i < j){
+		while (++cnt_compare && a[i] < p){
 			i++;
-			swap(a[i], a[j]);
+		}
+		while (++cnt_compare && a[j] > p){
+			j--;
+		}
+		if (++cnt_compare && i <= j){
+			int temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+			i++;
+			j--;
 		}
 	}
-	i++; //Tang i len 1 don vi de swap pivot ve giua mang
-	swap(a[i], a[r]);
-	return i;
-}
-
-void quick_sort(int a[], int l, int r, long long &cnt_compare)
-{
-	if(l < r)
-	{
-		int pos = partition(a, l, r, cnt_compare);
-		quick_sort(a, l, pos - 1, cnt_compare); //De quy ben trai
-		quick_sort(a, pos + 1, r, cnt_compare); //De quy ben phai
+	if (++cnt_compare && i < r){
+		quickSort(a, i, r, cnt_compare);
 	}
-}
+	if (++cnt_compare && l < j){
+		quickSort(a, l, j, cnt_compare);
+	}
+} 
 
 void shakerSort(int a[], int n, long long &count_compare) {
     count_compare = 0;
