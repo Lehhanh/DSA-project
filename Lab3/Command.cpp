@@ -7,7 +7,7 @@ bool check_algorithm(char algorithm[], int a[], int n, long long& count_compare,
 	clock_t start, end;
 	if (strcmp(algorithm, "selection-sort") == 0) {
 		start = clock();
-		selectionSort(a, n, count_compare);
+		selection_sort(a, n, count_compare);
 		end = clock();
 	}
 	else if (strcmp(algorithm, "insertion-sort") == 0) {
@@ -27,7 +27,7 @@ bool check_algorithm(char algorithm[], int a[], int n, long long& count_compare,
 	}
 	else if (strcmp(algorithm, "shell-sort") == 0) {
 		start = clock();
-		shellSort(a, n, count_compare);
+		shell_sort(a, n, count_compare);
 		end = clock();
 	}
 	else if (strcmp(algorithm, "heap-sort") == 0) {
@@ -42,7 +42,7 @@ bool check_algorithm(char algorithm[], int a[], int n, long long& count_compare,
 	}
 	else if (strcmp(algorithm, "quick-sort") == 0) {
 		start = clock();
-		quickSort(a, 0, n - 1, count_compare);
+		quick_sort(a, 0, n - 1, count_compare);
 		end = clock();
 	}
 	else if (strcmp(algorithm, "counting-sort") == 0) {
