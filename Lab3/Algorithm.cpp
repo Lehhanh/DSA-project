@@ -301,38 +301,44 @@ void heapSort(int a[], int n, long long& count_compare)
 
 void counting_sort(int input[], int n, long long& count_compare)
 {
-    count_compare = 0;
-    int *output = new int [n];
+
+    int* output = new int [n]; // The output will have sorted input array
     int max = input[0];
     int min = input[0];
-    int i;
-	
-    for(i = 1; ++count_compare && i < n; i++)
+
+    for(int i = 1; ++count_compare && i < n; i++)
     {
         if(++count_compare && input[i] > max)
-            max = input[i];
+            max = input[i]; // Maximum value in array
         else if(++count_compare && input[i] < min)
-            min = input[i];
+            min = input[i]; // Minimum value in array
     }
 
-    int k = max - min + 1;
+    int k = max - min + 1; // Size of count array
 
-    int* count_array = new int [k];
-    for(i = 0; ++count_compare && i < k; i++)
-        count_array[i] = 0;
+    int* count_array = new int [k]; // Create a count_array to store count of each individual input value
+    fill_n(count_array, k, 0); // Initialize count_array elements as zero
 
-    for(i = 0; ++count_compare && i < n; i++)
-        count_array[input[i] - min]++;
-    for(i = 1; ++count_compare && i < k; i++)
+    for(int i = 0;++count_compare &&  i < n; i++)
+        count_array[input[i] - min]++; // Store count of each individual input value
+
+    /* Change count_array so that count_array now contains actual
+     position of input values in output array */
+    for(int i = 1;++count_compare && i < k; i++)
         count_array[i] += count_array[i - 1];
-    for(i = 0; ++count_compare && i < n; i++)
+
+
+    // Populate output array using count_array and input array
+    for(int i = 0;++count_compare && i < n; i++)
     {
         output[count_array[input[i] - min] - 1] = input[i];
         count_array[input[i] - min]--;
     }
 
-    for(i = 0; ++count_compare && i < n; i++)
-        input[i] = output[i];
-    delete[] output;
-    delete [] count_array;
+
+    for(int i = 0;++count_compare && i < n; i++)
+        input[i] = output[i]; // Copy the output array to input, so that input now contains sorted values
+
+ delete [] output;
+ delete [] count_array;
 }
