@@ -206,11 +206,11 @@ void Command_2(int argc, char* argv[]) {
 	}
 }
 void Command_3(int argc, char* argv[]) {
-	
+
 	double running_time = 0;
 	long long count_compare = 0;
 	int check_1 = check_outputParameter(argv[4]);
-	
+
 	if (check_1 == -1) {
 		cout << "Invalid output parameter" << endl;
 		return;
@@ -222,31 +222,24 @@ void Command_3(int argc, char* argv[]) {
 	}
 	int* a = new int[n];
 	GenerateRandomData(a, n);
-	
+
 	ofstream f1;
-	f1.open("input.txt", ios_base::out);
+	f1.open("input_1.txt", ios_base::out);
 	f1 << n << endl;
 	for (int i = 0; i < n; i++) {
 		f1 << a[i] << " ";
 	}
 	f1.close();
-	
+
 	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
 		cout << "Invalid algorithm" << endl;
 		return;
 	}
-	ofstream f2;
-	f2.open("output.txt", ios_base::out);
-	f2 << n << endl;
-	for (int i = 0; i < n; i++) {
-		f2 << a[i] << " ";
-	}
-	f2.close();
-	
+
 	cout << "ALGORITHM MODE" << endl;
 	cout << "Algorithm:" << argv[2] << endl;
 	cout << "Input size:" << n << endl;
-	cout << "Input order: " << "Randomized";
+	cout << "Input order: " << "Randomized" << endl;
 	cout << "------------------------------" << endl;
 	switch (check_1) {
 	case 0:
@@ -260,34 +253,26 @@ void Command_3(int argc, char* argv[]) {
 		cout << "Comparisons:" << count_compare << endl;
 		break;
 	}
-	cout << "------------------------------" << endl;
-	
+	cout << endl;
+
 	running_time = 0;
 	count_compare = 0;
 	GenerateNearlySortedData(a, n);
-	
-	ofstream f1;
-	f1.open("input.txt", ios_base::out);
-	f1 << n << endl;
+
+	ofstream f11;
+	f11.open("input_2.txt", ios_base::out);
+	f11 << n << endl;
 	for (int i = 0; i < n; i++) {
-		f1 << a[i] << " ";
+		f11 << a[i] << " ";
 	}
-	f1.close();
-	
+	f11.close();
+
 	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
 		cout << "Invalid algorithm" << endl;
 		return;
 	}
-	
-	ofstream f2;
-	f2.open("output.txt", ios_base::out);
-	f2 << n << endl;
-	for (int i = 0; i < n; i++) {
-		f2 << a[i] << " ";
-	}
-	f2.close();
 
-	cout << "Input order: " << "Nearly Sorted";
+	cout << "Input order: " << "Nearly Sorted" << endl;
 	cout << "------------------------------" << endl;
 	switch (check_1) {
 	case 0:
@@ -301,34 +286,26 @@ void Command_3(int argc, char* argv[]) {
 		cout << "Comparisons:" << count_compare << endl;
 		break;
 	}
-	cout << "------------------------------" << endl;
-	
+	cout << endl;
+
 	running_time = 0;
 	count_compare = 0;
 	GenerateSortedData(a, n);
-	
-	ofstream f1;
-	f1.open("input.txt", ios_base::out);
-	f1 << n << endl;
+
+	ofstream f12;
+	f12.open("input_3.txt", ios_base::out);
+	f12 << n << endl;
 	for (int i = 0; i < n; i++) {
-		f1 << a[i] << " ";
+		f12 << a[i] << " ";
 	}
-	f1.close();
-	
+	f12.close();
+
 	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
 		cout << "Invalid algorithm" << endl;
 		return;
 	}
-	
-	ofstream f2;
-	f2.open("output.txt", ios_base::out);
-	f2 << n << endl;
-	for (int i = 0; i < n; i++) {
-		f2 << a[i] << " ";
-	}
-	f2.close();
 
-	cout << "Input order: " << "Sorted";
+	cout << "Input order: " << "Sorted" << endl;
 	cout << "------------------------------" << endl;
 	switch (check_1) {
 	case 0:
@@ -342,34 +319,26 @@ void Command_3(int argc, char* argv[]) {
 		cout << "Comparisons:" << count_compare << endl;
 		break;
 	}
-	cout << "------------------------------" << endl;
+	cout << endl;
 
-		running_time = 0;
+	running_time = 0;
 	count_compare = 0;
 	GenerateReverseData(a, n);
-	
-	ofstream f1;
-	f1.open("input.txt", ios_base::out);
-	f1 << n << endl;
+
+	ofstream f13;
+	f13.open("input_4.txt", ios_base::out);
+	f13 << n << endl;
 	for (int i = 0; i < n; i++) {
-		f1 << a[i] << " ";
+		f13 << a[i] << " ";
 	}
-	f1.close();
-	
+	f13.close();
+
 	if (!check_algorithm(argv[2], a, n, count_compare, running_time)) {
 		cout << "Invalid algorithm" << endl;
 		return;
 	}
-	
-	ofstream f2;
-	f2.open("output.txt", ios_base::out);
-	f2 << n << endl;
-	for (int i = 0; i < n; i++) {
-		f2 << a[i] << " ";
-	}
-	f2.close();
 
-	cout << "Input order: " << "Reversed";
+	cout << "Input order: " << "Reversed" << endl;
 	cout << "------------------------------" << endl;
 	switch (check_1) {
 	case 0:
@@ -383,10 +352,11 @@ void Command_3(int argc, char* argv[]) {
 		cout << "Comparisons:" << count_compare << endl;
 		break;
 	}
-	cout << "------------------------------" << endl;
-	
-	delete [] a;
+	cout << endl;
+
+	delete[] a;
 }
+
 
 void Command_4(int argc, char* argv[]) {
 	string algorithm_1 = argv[2];
