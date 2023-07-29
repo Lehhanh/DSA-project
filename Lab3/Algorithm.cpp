@@ -299,7 +299,7 @@ void heapSort(int a[], int n, long long& count_compare)
 	}
 }
 
-void counting_sort(int input[], int n, long long& count_compare)
+void countingSort(int input[], int n, long long& count_compare)
 {
 
     int* output = new int [n]; // The output will have sorted input array
