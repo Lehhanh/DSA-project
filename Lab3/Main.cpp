@@ -18,7 +18,6 @@ int main(int argc, char* argv[]) {
 			else Command_1(argc, argv);
 		}
 		else if (argc == 6) {
-			//command 2
 			Command_2(argc, argv);
 		}
 		else {
@@ -27,11 +26,10 @@ int main(int argc, char* argv[]) {
 	}
 	else if (mode == "-c") {
 		if (argc == 5) {
-			//command 4
 			Command_4(argc, argv);
 		}
 		else if (argc == 6) {
-			//command 5
+			Command_5(argc, argv);
 		}
 		else {
 			cout << "Insufficient command line arguments!" << endl;
