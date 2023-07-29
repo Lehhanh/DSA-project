@@ -48,7 +48,7 @@ bool check_algorithm(string algorithm, int a[], int n, long long& count_compare,
 	}
 	else if (algorithm == "counting-sort") {
 		start = clock();
-		counting_sort(a, n, count_compare);
+		countingSort(a, n, count_compare);
 		end = clock();
 	}
 	else if (algorithm == "radix-sort") {
