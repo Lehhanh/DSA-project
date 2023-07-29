@@ -111,7 +111,7 @@ void Command_1(int argc, char* argv[]) {
 	double running_time = 0;
 	long long count_compare = 0;
 	if (!check_algorithm(algorithm, a, n, count_compare, running_time)) {
-		cout << "Invalid algorithm specified!" << endl;
+		cout << "Invalid algorithm" << endl;
 		return;
 	}
 	cout << "ALGORITHM MODE" << endl;
@@ -367,12 +367,8 @@ void Command_4(int argc, char* argv[]) {
 	double running_time_2 = 0;
 	long long count_compare_1 = 0;
 	long long count_compare_2 = 0;
-	if (!check_algorithm(algorithm_1, a, n, count_compare_1, running_time_1)) {
-		cout << "Invalid algorithm specified!" << endl;
-		return;
-	}
-	if (!check_algorithm(algorithm_2, a, n, count_compare_2, running_time_2)) {
-		cout << "Invalid algorithm specified!" << endl;
+	if (!check_algorithm(algorithm_1, a, n, count_compare_1, running_time_1) || !check_algorithm(algorithm_2, a, n, count_compare_2, running_time_2)) {
+		cout << "Invalid algorithm" << endl;
 		return;
 	}
 	cout << "ALGORITHM MODE" << endl;
